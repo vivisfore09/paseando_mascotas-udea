@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paseando_pet/pages/home_page.dart';
 import 'package:paseando_pet/pages/registrar_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,12 +10,51 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  final email=TextEditingController();
+  final password=TextEditingController();
+
+  void validarUsuario(){
+
+    if(email.text.isNotEmpty && password.text.isNotEmpty){
+    if(email.text=="viviana@gmail.com") {
+      if (password.text == "vivi123*") {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
+      } else {
+        mostrarMensaje("Contraseña Incorrecta.");
+      }
+    }else{  mostrarMensaje("Usuario no registrado."); }
+    }else{
+      mostrarMensaje("Datos Obligatorios.");
+    }
+  }
+
+  void mostrarMensaje(String mensaje){
+    final pantalla=ScaffoldMessenger.of(context);
+    pantalla.showSnackBar(
+      SnackBar(
+        content: Text(mensaje, style: const TextStyle(fontSize: 20),),
+        backgroundColor: const Color(0xFFD50000),
+        duration: const Duration(seconds: 10),
+        action: SnackBarAction(
+          label: 'Registrese',
+          onPressed: (){
+            pantalla.hideCurrentSnackBar;
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> RegistrarPage()));
+          }
+
+        ),
+      )
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 100,horizontal: 50),
+          padding: const EdgeInsets.symmetric(vertical: 100,horizontal: 50),
           child: Center(
             child: Column(
               children: [
@@ -29,23 +69,26 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 TextFormField(
+                  controller: email,
                   decoration: const InputDecoration(
-                    labelText: "Usuario",
+                    labelText: "Correo Electronico",
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.person)
+                    suffixIcon: Icon(Icons.email_outlined, color: Colors.blue, size: 24)
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
+                  controller: password,
                   obscureText: true,
                   //keyboardType: TextInputType.emailAddress,
                   //maxLength: 8,
                   decoration: const InputDecoration(
                       labelText: "Password",
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.vpn_key_sharp)
+                      suffixIcon: Icon(Icons.vpn_key_sharp, color: Colors.blue, size: 24),
+
                   ),
                 ),
                 TextButton(
@@ -59,7 +102,20 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text("Registrarse")
                 ),
                 ElevatedButton(
-                    onPressed:(){},
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(300, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)
+                      ),
+                      shadowColor: Colors.black26,
+                      textStyle: const TextStyle(
+                        fontStyle: FontStyle.italic,
+                        fontSize: 20
+                      )
+                    ),
+                    onPressed:(){
+                      validarUsuario();
+                    },
                     child: const Text("Ingresar"))
 
               ],
