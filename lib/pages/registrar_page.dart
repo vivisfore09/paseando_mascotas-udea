@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:paseando_pet/pages/login_page.dart';
+import 'package:paseando_pet/repositorio/usuario_registrar.dart';
 
 class RegistrarPage extends StatefulWidget {
   const RegistrarPage({Key? key}) : super(key: key);
@@ -18,8 +20,15 @@ class _RegistrarPageState extends State<RegistrarPage> {
   final email=TextEditingController();
   final password=TextEditingController();
   final passwordConf=TextEditingController();
+  Usuario_Registrar usuario= Usuario_Registrar();
 
   Genero? _genero= Genero.Femenino;
+
+  void guardarUsuario() async {
+    bool resultado= await usuario.registrarUsuario(email.text, password.text);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +201,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
                                   fontStyle: FontStyle.italic,
                                   fontSize: 20)),
                           onPressed:(){
-
+                            guardarUsuario();
                           },
                           child: const Text("Registrarse"))
             ])))),

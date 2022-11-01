@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "903904005911",
+    "project_id": "udea-mascotas",
+    "storage_bucket": "udea-mascotas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903904005911:android:fe946e2c76ce2b786e7152",
+        "android_client_info": {
+          "package_name": "com.Udea.paseando_pet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903904005911-9t5kj0pd6il7obsm6tn61219rcs7u4ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuc_PlMPv1RL_hxwLmrLBl6ZKGKbzWTXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903904005911-9t5kj0pd6il7obsm6tn61219rcs7u4ml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

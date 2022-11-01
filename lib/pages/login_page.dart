@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paseando_pet/pages/home_page.dart';
 import 'package:paseando_pet/pages/registrar_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,20 +14,31 @@ class _LoginPageState extends State<LoginPage> {
 
   final email=TextEditingController();
   final password=TextEditingController();
+  FirebaseAuth auth= FirebaseAuth.instance;
 
-  void validarUsuario(){
+  void validarUsuario() async{
 
-    if(email.text.isNotEmpty && password.text.isNotEmpty){
-    if(email.text=="viviana@gmail.com") {
-      if (password.text == "vivi123*") {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      } else {
-        mostrarMensaje("Contraseña Incorrecta.");
+    try {
+
+      if(email.text.isNotEmpty && password.text.isNotEmpty){
+        final user = await auth.signInWithEmailAndPassword(email: email.text, password: password.text);
+        if(user != null){
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => const HomePage()));
+        }
+      /*if(email.text=="viviana@gmail.com") {
+        if (password.text == "vivi123*") {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => const HomePage()));
+        } else {
+          mostrarMensaje("Contraseña Incorrecta.");
+        }
+      }else{  mostrarMensaje("Usuario no registrado."); }*/
+      }else{
+        mostrarMensaje("Datos Obligatorios.");
       }
-    }else{  mostrarMensaje("Usuario no registrado."); }
-    }else{
-      mostrarMensaje("Datos Obligatorios.");
+    } catch (e) {
+      mostrarMensaje("Acceso Denegado: "+e.toString());
     }
   }
 

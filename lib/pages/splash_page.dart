@@ -15,7 +15,6 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
   }
 
-  
   Future<void> pasarPage() async{
     Future.delayed(const Duration(seconds: 3), () async{
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>903904005911-0r1lk1ulfu3e38gi9bc9bq2o0s5le5fl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.903904005911-0r1lk1ulfu3e38gi9bc9bq2o0s5le5fl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB8opOZHaLkq--15WZv1nfv5Lyb8XdMZJ8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>903904005911</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Udea.paseandoPet</string>
+	<key>PROJECT_ID</key>
+	<string>udea-mascotas</string>
+	<key>STORAGE_BUCKET</key>
+	<string>udea-mascotas.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:903904005911:ios:de0ff46550c06e536e7152</string>
+</dict>
+</plist>
