@@ -15,54 +15,42 @@ class _LoginPageState extends State<LoginPage> {
   final email=TextEditingController();
   final password=TextEditingController();
   FirebaseAuth auth= FirebaseAuth.instance;
+  late final mensaje msg;
 
   void validarUsuario() async{
 
     try {
 
-      if(email.text.isNotEmpty && password.text.isNotEmpty){
         final user = await auth.signInWithEmailAndPassword(email: email.text, password: password.text);
         if(user != null){
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const HomePage()));
+          msg.mostrarMensaje("Bienvenido!!!!");
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
         }
-      /*if(email.text=="viviana@gmail.com") {
-        if (password.text == "vivi123*") {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => const HomePage()));
-        } else {
-          mostrarMensaje("Contraseña Incorrecta.");
-        }
-      }else{  mostrarMensaje("Usuario no registrado."); }*/
-      }else{
-        mostrarMensaje("Datos Obligatorios.");
+    } on FirebaseAuthException catch (e) {
+      //most-rarMensaje("${e.code}");
+
+      if(e.code=="invalid-email"){
+        msg.mostrarMensaje("El formato del Email no es correcto.");
+      }else
+      if(e.code=="user-not-found"){
+        msg.mostrarMensaje("El usuario no esta registrado.");
+      }else
+      if(e.code=="wrong-password"){
+        msg.mostrarMensaje("Contraseña Incorrecta.");
+      }else
+      if(e.code=="unknown"){
+        msg.mostrarMensaje("Complete los datos.");
+      }else
+      if(e.code=="network-request-failed"){
+        msg.mostrarMensaje("Revise la conexion a internet.");
       }
-    } catch (e) {
-      mostrarMensaje("Acceso Denegado: "+e.toString());
     }
   }
 
-  void mostrarMensaje(String mensaje){
-    final pantalla=ScaffoldMessenger.of(context);
-    pantalla.showSnackBar(
-      SnackBar(
-        content: Text(mensaje, style: const TextStyle(fontSize: 20),),
-        backgroundColor: const Color(0xFFD50000),
-        duration: const Duration(seconds: 10),
-        action: SnackBarAction(
-          label: 'Registrese',
-          onPressed: (){
-            pantalla.hideCurrentSnackBar;
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> RegistrarPage()));
-          }
-
-        ),
-      )
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
+    msg= mensaje(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -138,3 +126,41 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+class mensaje{
+
+  late BuildContext context;
+
+  mensaje(this.context);
+
+  void mostrarMensaje(String mensaje){
+    final pantalla=ScaffoldMessenger.of(context);
+    pantalla.showSnackBar(
+        SnackBar(
+          content: Text(mensaje, style: const TextStyle(fontSize: 20),),
+          backgroundColor: const Color(0xFFD50000),
+          duration: const Duration(seconds: 10),
+          action: SnackBarAction(
+              label: 'Registrese',
+              onPressed: (){
+                pantalla.hideCurrentSnackBar;
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> RegistrarPage()));
+              }
+
+          ),
+        )
+    );
+  }
+
+  void mensajeOk(String mensaje){
+    final pantalla=ScaffoldMessenger.of(context);
+    pantalla.showSnackBar(
+        SnackBar(
+          content: Text(mensaje, style: const TextStyle(fontSize: 20),),
+          backgroundColor: const Color(0xFF4CAF50),
+          duration: const Duration(seconds: 10),
+        )
+    );
+  }
+}
+
