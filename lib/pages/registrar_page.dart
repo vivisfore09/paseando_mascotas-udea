@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paseando_pet/modelo/usuario_modelo.dart';
 import 'package:paseando_pet/pages/login_page.dart';
 import 'package:paseando_pet/repositorio/usuario_registrar.dart';
 
@@ -25,7 +26,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
 
   Genero? _genero= Genero.Femenino;
 
-  void guardarUsuario() async {
+  void guardarUsuario(Usuario usuNew) async {
     var resultado= await usuario.registrarUsuario(email.text, password.text);
 
     if(resultado=="invalid-email"){
@@ -40,9 +41,36 @@ class _RegistrarPageState extends State<RegistrarPage> {
     if(resultado=="network-request-failed"){
       msg.mostrarMensaje("Revise la conexion a internet.");
     }else{
+      usuNew.id=resultado;
+      registrarUsuario(usuNew);
       msg.mensajeOk("Usuario Registrado exitosamente, inicie sesion.");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
     }
+  }
+
+  void registrarUsuario(Usuario usuNew) async{
+    var id= await usuario.crearUsuario(usuNew);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+  }
+
+  void traerDatos(){
+
+     setState(() {
+       if(password.text == passwordConf.text){
+          if(nombres.text.isNotEmpty && apellidos.text.isNotEmpty && email.text.isNotEmpty &&
+              telefono.text.isNotEmpty && direccion.text.isNotEmpty && password.text.isNotEmpty && passwordConf.text.isNotEmpty){
+            String gen ="Femenino";
+            if(_genero==Genero.Masculino){
+              gen="Masculino";
+            }
+            var usuNew= Usuario("", nombres.text, apellidos.text, email.text, telefono.text, direccion.text, gen, password.text);
+            guardarUsuario(usuNew);
+          }else{
+            msg.mostrarMensaje("Datos Incompletos.");
+          }
+       }else{
+         msg.mostrarMensaje("Las contraseñas no coinciden.");
+       }
+     });
   }
 
   @override
@@ -217,7 +245,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
                                   fontStyle: FontStyle.italic,
                                   fontSize: 20)),
                           onPressed:(){
-                            guardarUsuario();
+                            traerDatos();
                           },
                           child: const Text("Registrarse"))
             ])))),

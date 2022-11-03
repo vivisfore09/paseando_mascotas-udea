@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                       textStyle: const TextStyle(fontSize: 16, fontStyle: FontStyle.italic, color: Colors.blue)
                     ),
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const RegistrarPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => RegistrarPage()));
                     },
 
                     child: const Text("Registrarse")
