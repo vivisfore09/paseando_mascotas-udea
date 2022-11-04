@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:paseando_pet/modelo/usuario_modelo.dart';
 import 'package:paseando_pet/pages/login_page.dart';
 import 'package:paseando_pet/repositorio/usuario_registrar.dart';
+import 'dart:convert';
 
 class RegistrarPage extends StatefulWidget {
   const RegistrarPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
   final password=TextEditingController();
   final passwordConf=TextEditingController();
   Usuario_Registrar usuario= Usuario_Registrar();
-  late final mensaje msg;
+  late mensaje msg;
 
   Genero? _genero= Genero.Femenino;
 
@@ -49,7 +50,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
 
   void registrarUsuario(Usuario usuNew) async{
     var id= await usuario.crearUsuario(usuNew);
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
   }
 
   void traerDatos(){
