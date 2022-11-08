@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:paseando_pet/pages/menu_page.dart';
+import 'package:paseando_pet/pages/registrar_mascota_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -25,6 +26,12 @@ class _HomePageState extends State<HomePage> {
             Text("Hola: ${FirebaseAuth.instance.currentUser?.email}")
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add, size: 30, color: Colors.white),
+        onPressed:(){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> const RegistrarMascotaPage()));
+        },
       ),
     );
   }
