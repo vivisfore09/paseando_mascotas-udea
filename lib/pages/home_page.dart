@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:paseando_pet/pages/menu_page.dart';
+import 'package:paseando_pet/pages/paseadores_page.dart';
 import 'package:paseando_pet/pages/registrar_mascota_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,6 +43,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("PeseandoPet"),
+        actions: [
+          IconButton(
+              onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> PaseadoresPage() ));
+              },
+              icon: const Icon(Icons.accessibility_rounded, size: 30, color: Colors.white))
+        ],
       ),
       drawer: MenuPage(),
       body: ListView.builder(
