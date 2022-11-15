@@ -163,6 +163,7 @@ class _RegistrarMascotaPageState extends State<RegistrarMascotaPage> {
                           },
                           child: const Text("Registrar Mascota"))
                     ])))),
+      bottomNavigationBar: const menuInferior(),
     );
   }
 }

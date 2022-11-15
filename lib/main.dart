@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:paseando_pet/modelo/paseadores_local.dart';
 import 'package:paseando_pet/pages/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -8,6 +11,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
+  await Hive.initFlutter();
+  Hive.registerAdapter(PaseadoresLocalAdapter());
+  await Hive.openBox<PaseadoresLocal>('favoritos');
   runApp(const MyApp());
 }
 

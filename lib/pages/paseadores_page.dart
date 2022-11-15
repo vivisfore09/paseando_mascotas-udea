@@ -136,7 +136,8 @@ class _PaseadoresPageState extends State<PaseadoresPage> {
             ),
           ),
         ],
-      )
+      ),
+      bottomNavigationBar: const menuInferior(),
     );
   }
 }

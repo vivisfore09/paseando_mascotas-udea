@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:paseando_pet/pages/home_page.dart';
 import 'package:paseando_pet/pages/login_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:paseando_pet/pages/paseadores_page.dart';
+
+import 'favoritos_page.dart';
 
 
 class MenuPage extends StatelessWidget {
@@ -40,3 +45,39 @@ class MenuPage extends StatelessWidget {
     );
   }
 }
+
+class menuInferior extends StatelessWidget {
+  const menuInferior({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+        backgroundColor: Colors.blue,
+        selectedItemColor: Colors.orange,
+        unselectedItemColor: Colors.white,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.dog,size: 30),
+              label: "Mis Mascotas"
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.personWalking,size: 30),
+              label: "Paseadores"),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.heart,size: 30),
+              label: "Favoritos")
+        ],
+      onTap: (indice){
+          if(indice==0){
+            Navigator.push(context, MaterialPageRoute(builder: (contetx)=> const HomePage()));
+          }else if(indice==1){
+            Navigator.push(context, MaterialPageRoute(builder: (contetx)=> const PaseadoresPage()));
+          }else{
+            Navigator.push(context, MaterialPageRoute(builder: (contetx)=> const FavoritosPage()));
+          }
+      },
+
+    );
+  }
+}
+
