@@ -23,10 +23,13 @@ class _PaseadoresPageState extends State<PaseadoresPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    getPaseadores();
-  }
+      super.initState();
+      String? correo=FirebaseAuth.instance.currentUser?.email.toString();
+      print("----------------------->>>>>>>>>>>>>>>< "+correo!);
+      getPaseadores();
+    }
+
+
   
   Future getPaseadores() async{
 

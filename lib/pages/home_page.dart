@@ -20,6 +20,13 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      String? correo=FirebaseAuth.instance.currentUser?.email.toString();
+      print("----------------------->>>>>>>>>>>>>>>< "+correo!);
+    }
     getMascotas();
   }
   

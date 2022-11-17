@@ -9,9 +9,21 @@ import 'package:paseando_pet/pages/registrar_mascota_page.dart';
 import 'favoritos_page.dart';
 
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
 
-  final correo=FirebaseAuth.instance.currentUser?.email.toString();
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  final correo=FirebaseAuth.instance.currentUser?.email;
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    String? correo=FirebaseAuth.instance.currentUser?.email.toString();
+    print("----------------------->>>>>>>>>>>>>>>< "+correo!);
+  }
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,7 +39,7 @@ class MenuPage extends StatelessWidget {
             children: [
               ListTile(
                 leading: const Icon(Icons.person_pin, size: 30, color: Colors.black,),
-                title: Text((correo).toString(), style: const TextStyle( fontSize: 16)),
+                title: Text((correo).toString(), style: TextStyle( fontSize: 16)),
                 textColor: Colors.black,
               ),
               ListTile(

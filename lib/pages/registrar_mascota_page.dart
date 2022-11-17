@@ -8,6 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'login_page.dart';
 
 class RegistrarMascotaPage extends StatefulWidget {
+  const RegistrarMascotaPage({Key? key}) : super(key: key);
+
 
   @override
   State<RegistrarMascotaPage> createState() => _RegistrarMascotaPageState();
@@ -18,6 +20,13 @@ enum Sexo { Hembra, Macho}
 
 class _RegistrarMascotaPageState extends State<RegistrarMascotaPage> {
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    String? correo=FirebaseAuth.instance.currentUser?.email.toString();
+    print("----------------------->>>>>>>>>>>>>>>< "+correo!);
+  }
 
   final nombre=TextEditingController();
   final tipo=TextEditingController();

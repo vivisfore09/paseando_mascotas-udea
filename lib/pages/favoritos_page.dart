@@ -19,6 +19,13 @@ class FavoritosPage extends StatefulWidget {
 class _FavoritosPageState extends State<FavoritosPage> {
   //final correo=FirebaseAuth.instance.currentUser?.email.toString();
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    String? correo=FirebaseAuth.instance.currentUser?.email.toString();
+    print("----------------------->>>>>>>>>>>>>>>< "+correo!);
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
