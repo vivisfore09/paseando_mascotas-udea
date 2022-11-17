@@ -1,9 +1,12 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paseando_pet/modelo/paseadores_local.dart';
 
+import '../modelo/modelos_modelo.dart';
 import '../repositorio/Boxes.dart';
+import 'detalle_paseador_page.dart';
 import 'menu_page.dart';
 
 class FavoritosPage extends StatefulWidget {
@@ -14,6 +17,7 @@ class FavoritosPage extends StatefulWidget {
 }
 
 class _FavoritosPageState extends State<FavoritosPage> {
+  //final correo=FirebaseAuth.instance.currentUser?.email.toString();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +57,13 @@ class _FavoritosPageState extends State<FavoritosPage> {
                         title: Text(lista[i].nombre ?? "", style: const TextStyle(fontSize: 20, color: Colors.black, )),
                         subtitle: Text(lista[i].ciudad ?? ""),
                         onTap: (){
-                          //datosPaseador paseadorNew= datosPaseador(idDoc[i], paseadores[i]["nombre"], paseadores[i]["ciudad"], paseadores[i]["contacto"], paseadores[i]["foto"], paseadores[i]["perfil"]);
-                         // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetallePaseador(paseadorNew)));
+                         //datosPaseador paseadorNew= datosPaseador(lista[i].id ?? "", lista[i].nombre ?? "", lista[i].ciudad ?? "", lista[i].contacto ?? "", lista[i].foto ?? "", lista[i].perfil ?? "");
+                         //Navigator.push(context, MaterialPageRoute(builder: (context)=>DetallePaseador(paseadorNew)));
+                        },
+                        onLongPress: (){
+                          setState(() {
+                            lista[i].delete();
+                          });
                         },
                       ),
                     ),

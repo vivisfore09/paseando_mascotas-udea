@@ -124,7 +124,7 @@ class _PaseadoresPageState extends State<PaseadoresPage> {
                           title: Text(paseadores[i]["nombre"], style: const TextStyle(fontSize: 20, color: Colors.black, )),
                           subtitle: Text(paseadores[i]["ciudad"]),
                           onTap: (){
-                            datosPaseador paseadorNew= datosPaseador(idDoc[i], paseadores[i]["nombre"], paseadores[i]["ciudad"], paseadores[i]["contacto"], paseadores[i]["foto"], paseadores[i]["perfil"]);
+                            datosPaseador paseadorNew= datosPaseador(idDoc[i], paseadores[i]["nombre"], paseadores[i]["ciudad"], paseadores[i]["contacto"], paseadores[i]["foto"], paseadores[i]["perfil"], paseadores[i]["ubicacion"]);
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>DetallePaseador(paseadorNew)));
                           },
                         ),

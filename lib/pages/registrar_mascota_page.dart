@@ -3,11 +3,11 @@ import 'package:paseando_pet/modelo/mascota_modelo.dart';
 import 'package:paseando_pet/pages/home_page.dart';
 import 'package:paseando_pet/pages/menu_page.dart';
 import 'package:paseando_pet/repositorio/mascota_repositorio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'login_page.dart';
 
 class RegistrarMascotaPage extends StatefulWidget {
-  const RegistrarMascotaPage({Key? key}) : super(key: key);
 
   @override
   State<RegistrarMascotaPage> createState() => _RegistrarMascotaPageState();
@@ -17,6 +17,7 @@ class RegistrarMascotaPage extends StatefulWidget {
 enum Sexo { Hembra, Macho}
 
 class _RegistrarMascotaPageState extends State<RegistrarMascotaPage> {
+
 
   final nombre=TextEditingController();
   final tipo=TextEditingController();
